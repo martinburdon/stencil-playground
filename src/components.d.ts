@@ -10,6 +10,11 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface CircleProgress {
+    'progressAmount': number;
+    'progressColor': string;
+    'progressLabel': string;
+  }
   interface CookieConsent {
     'privacyUrl': string;
   }
@@ -32,6 +37,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLCircleProgressElement extends Components.CircleProgress, HTMLStencilElement {}
+  var HTMLCircleProgressElement: {
+    prototype: HTMLCircleProgressElement;
+    new (): HTMLCircleProgressElement;
+  };
+
   interface HTMLCookieConsentElement extends Components.CookieConsent, HTMLStencilElement {}
   var HTMLCookieConsentElement: {
     prototype: HTMLCookieConsentElement;
@@ -44,12 +55,18 @@ declare global {
     new (): HTMLMyComponentElement;
   };
   interface HTMLElementTagNameMap {
+    'circle-progress': HTMLCircleProgressElement;
     'cookie-consent': HTMLCookieConsentElement;
     'my-component': HTMLMyComponentElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface CircleProgress {
+    'progressAmount'?: number;
+    'progressColor'?: string;
+    'progressLabel'?: string;
+  }
   interface CookieConsent {
     'privacyUrl'?: string;
   }
@@ -69,6 +86,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'circle-progress': CircleProgress;
     'cookie-consent': CookieConsent;
     'my-component': MyComponent;
   }
@@ -80,6 +98,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'circle-progress': LocalJSX.CircleProgress & JSXBase.HTMLAttributes<HTMLCircleProgressElement>;
       'cookie-consent': LocalJSX.CookieConsent & JSXBase.HTMLAttributes<HTMLCookieConsentElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }

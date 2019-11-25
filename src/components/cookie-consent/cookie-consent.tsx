@@ -1,4 +1,4 @@
-import { Component, State, Listen, Prop, h } from '@stencil/core';
+import { Component, State, Prop, h } from '@stencil/core';
 import Cookies from '../../utils/cookies';
 
 @Component({
