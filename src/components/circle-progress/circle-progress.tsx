@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, h } from '@stencil/core';
+import { Component, Listen, Prop, Watch, h } from '@stencil/core';
 
 @Component({
   tag: 'circle-progress',
@@ -10,6 +10,11 @@ export class CircleProgress {
   @Prop() progressLabel: string = '0%';
   @Prop() progressColor: string = '#2ecc71';
 
+  @Listen('restartProgress', { target: 'window' })
+  restartProgressHandler(event: CustomEvent) {
+    this.startLoader(event.detail);
+  }
+
   @Watch('progressAmount')
   watchHandler(newValue: number) {
     this.progressLabel = `${newValue.toString()}%`;
@@ -17,13 +22,18 @@ export class CircleProgress {
   }
 
   connectedCallback() {
+    this.startLoader();
+  }
+
+  startLoader(val = 0) {
+    this.progressAmount = val;
     const interval = window.setInterval(() => {
       this.progressAmount = this.progressAmount + 1;
       if (this.progressAmount >= 100) {
         this.progressAmount = 100;
         window.clearInterval(interval);
       }
-    }, 30);
+    }, 15);
   }
 
   render() {

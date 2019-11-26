@@ -32,6 +32,7 @@ export namespace Components {
     */
     'middle': string;
   }
+  interface RestartProgress {}
 }
 
 declare global {
@@ -54,10 +55,17 @@ declare global {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
+
+  interface HTMLRestartProgressElement extends Components.RestartProgress, HTMLStencilElement {}
+  var HTMLRestartProgressElement: {
+    prototype: HTMLRestartProgressElement;
+    new (): HTMLRestartProgressElement;
+  };
   interface HTMLElementTagNameMap {
     'circle-progress': HTMLCircleProgressElement;
     'cookie-consent': HTMLCookieConsentElement;
     'my-component': HTMLMyComponentElement;
+    'restart-progress': HTMLRestartProgressElement;
   }
 }
 
@@ -84,11 +92,15 @@ declare namespace LocalJSX {
     */
     'middle'?: string;
   }
+  interface RestartProgress {
+    'onRestartProgress'?: (event: CustomEvent<any>) => void;
+  }
 
   interface IntrinsicElements {
     'circle-progress': CircleProgress;
     'cookie-consent': CookieConsent;
     'my-component': MyComponent;
+    'restart-progress': RestartProgress;
   }
 }
 
@@ -101,6 +113,7 @@ declare module "@stencil/core" {
       'circle-progress': LocalJSX.CircleProgress & JSXBase.HTMLAttributes<HTMLCircleProgressElement>;
       'cookie-consent': LocalJSX.CookieConsent & JSXBase.HTMLAttributes<HTMLCookieConsentElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+      'restart-progress': LocalJSX.RestartProgress & JSXBase.HTMLAttributes<HTMLRestartProgressElement>;
     }
   }
 }
