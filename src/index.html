@@ -7,11 +7,28 @@
 
   <script type="module" src="/build/coronatesting.esm.js"></script>
   <script nomodule src="/build/coronatesting.js"></script>
+  <style>
+    html {
+      font-size: 10px;
+    }
+
+    body {
+      font-family: Lato,Avenir,-apple-system,Helvetica Neue,MS Sans Serif,Arial,sans-serif;
+      font-size: 1.6rem;
+    }
+  </style>
 </head>
 <body>
 
   <cookie-consent privacy-url="/custom-url"></cookie-consent>
   <circle-progress></circle-progress>
   <restart-progress></restart-progress>
+
+  <games-grid
+    category-name="Table Games"
+    category-url="/games/table-games"
+    show-category-bar
+  ></games-grid>
+
 </body>
 </html>

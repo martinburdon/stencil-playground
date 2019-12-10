@@ -18,6 +18,16 @@ export namespace Components {
   interface CookieConsent {
     'privacyUrl': string;
   }
+  interface GameItem {
+    'displayName': string;
+    'image': string;
+    'slug': string;
+  }
+  interface GamesGrid {
+    'categoryName': string;
+    'categoryUrl': string;
+    'showCategoryBar': boolean;
+  }
   interface MyComponent {
     /**
     * The first name
@@ -33,6 +43,7 @@ export namespace Components {
     'middle': string;
   }
   interface RestartProgress {}
+  interface SparkMainMenu {}
 }
 
 declare global {
@@ -50,6 +61,18 @@ declare global {
     new (): HTMLCookieConsentElement;
   };
 
+  interface HTMLGameItemElement extends Components.GameItem, HTMLStencilElement {}
+  var HTMLGameItemElement: {
+    prototype: HTMLGameItemElement;
+    new (): HTMLGameItemElement;
+  };
+
+  interface HTMLGamesGridElement extends Components.GamesGrid, HTMLStencilElement {}
+  var HTMLGamesGridElement: {
+    prototype: HTMLGamesGridElement;
+    new (): HTMLGamesGridElement;
+  };
+
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
@@ -61,11 +84,20 @@ declare global {
     prototype: HTMLRestartProgressElement;
     new (): HTMLRestartProgressElement;
   };
+
+  interface HTMLSparkMainMenuElement extends Components.SparkMainMenu, HTMLStencilElement {}
+  var HTMLSparkMainMenuElement: {
+    prototype: HTMLSparkMainMenuElement;
+    new (): HTMLSparkMainMenuElement;
+  };
   interface HTMLElementTagNameMap {
     'circle-progress': HTMLCircleProgressElement;
     'cookie-consent': HTMLCookieConsentElement;
+    'game-item': HTMLGameItemElement;
+    'games-grid': HTMLGamesGridElement;
     'my-component': HTMLMyComponentElement;
     'restart-progress': HTMLRestartProgressElement;
+    'spark-main-menu': HTMLSparkMainMenuElement;
   }
 }
 
@@ -77,6 +109,16 @@ declare namespace LocalJSX {
   }
   interface CookieConsent {
     'privacyUrl'?: string;
+  }
+  interface GameItem {
+    'displayName'?: string;
+    'image'?: string;
+    'slug'?: string;
+  }
+  interface GamesGrid {
+    'categoryName'?: string;
+    'categoryUrl'?: string;
+    'showCategoryBar'?: boolean;
   }
   interface MyComponent {
     /**
@@ -95,12 +137,16 @@ declare namespace LocalJSX {
   interface RestartProgress {
     'onRestartProgress'?: (event: CustomEvent<any>) => void;
   }
+  interface SparkMainMenu {}
 
   interface IntrinsicElements {
     'circle-progress': CircleProgress;
     'cookie-consent': CookieConsent;
+    'game-item': GameItem;
+    'games-grid': GamesGrid;
     'my-component': MyComponent;
     'restart-progress': RestartProgress;
+    'spark-main-menu': SparkMainMenu;
   }
 }
 
@@ -112,8 +158,11 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'circle-progress': LocalJSX.CircleProgress & JSXBase.HTMLAttributes<HTMLCircleProgressElement>;
       'cookie-consent': LocalJSX.CookieConsent & JSXBase.HTMLAttributes<HTMLCookieConsentElement>;
+      'game-item': LocalJSX.GameItem & JSXBase.HTMLAttributes<HTMLGameItemElement>;
+      'games-grid': LocalJSX.GamesGrid & JSXBase.HTMLAttributes<HTMLGamesGridElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
       'restart-progress': LocalJSX.RestartProgress & JSXBase.HTMLAttributes<HTMLRestartProgressElement>;
+      'spark-main-menu': LocalJSX.SparkMainMenu & JSXBase.HTMLAttributes<HTMLSparkMainMenuElement>;
     }
   }
 }
